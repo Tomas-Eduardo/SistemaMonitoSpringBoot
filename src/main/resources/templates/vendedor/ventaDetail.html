@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detalle de Venta</title>
+  <!-- Agrega enlaces a las hojas de estilo de Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/vendedor">Sistema Monito - Vendedor</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/vendedor">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/vendedor/allProductos">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/vendedor/allVentas">Ventas</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/vendedor/logout">
+          <button class="btn btn-danger">Cerrar Sesión</button>
+        </a>
+      </li>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h2>Detalle de Venta</h2>
+
+  <!-- Muestra información del pedido -->
+  <div class="card mb-3">
+    <div class="card-header">
+      <h4>Pedido</h4>
+    </div>
+    <div class="card-body">
+      <p><strong>ID de Pedido:</strong> [[${pedido.id}]]</p>
+      <!-- Agrega más campos según los atributos de Pedido -->
+    </div>
+  </div>
+
+  <!-- Muestra detalles de la venta -->
+  <div class="card">
+    <div class="card-header">
+      <h4>Detalles de la Venta</h4>
+    </div>
+    <div class="card-body">
+      <!-- Itera sobre los detalles de la venta -->
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Itera sobre los detalles de la venta -->
+        <tr th:each="detalleVenta : ${pedido.detalles}">
+          <td th:text="${detalleVenta.id}"></td>
+          <td th:text="${detalleVenta.producto.nombre}"></td>
+          <td th:text="${detalleVenta.cantidad}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Agrega enlaces a los scripts de Bootstrap y jQuery al final del cuerpo del documento -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

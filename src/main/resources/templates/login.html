@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Link Of Bootstrap CSS via CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Title -->
+    <title>Iniciar Sesión</title>
+</head>
+
+<body class="bg-light">
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Iniciar Sesión</h4>
+                    <form id="loginForm" th:action="@{/api/login}" method="post">
+                        <div class="mb-3">
+                            <h4>Correo electronico</h4>
+                            <input type="email" class="form-control" th:field="*{user.email}" placeholder="Ingrese su correo">
+                        </div>
+                        <div class="mb-3">
+                            <h4>Password</h4>
+                            <input type="password" class="form-control" th:field="*{user.password}" placeholder="Ingrese su contraseña">
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

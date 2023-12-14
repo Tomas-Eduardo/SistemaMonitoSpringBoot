@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario con Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/jefe">Sistema Monito - Jefe</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/jefe">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jefe/allProductos">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jefe/allVentas">Ventas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jefe/allEmpleados">Gestionar Empleados</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/jefe/logout">
+          <button class="btn btn-danger">Cerrar Sesión</button>
+        </a>
+      </li>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h2>Formulario de Registro</h2>
+  <form action="/jefe/createEmp" method="GET">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+    <div class="mb-3">
+      <label for="apellido" class="form-label">Apellido</label>
+      <input type="text" class="form-control" id="apellido" name="apellido" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Contrasena</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <div class="mb-3">
+      <label for="rut" class="form-label">Rut</label>
+      <input type="text" class="form-control" id="rut" name="rut" required>
+    </div>
+    <div class="mb-3">
+      <label for="perfil" class="form-label">Rol</label>
+      <select class="form-select" id="perfil" name="perfil" required>
+        <option value="VENDEDOR">VENDEDOR</option>
+        <option value="JEFE">JEFE</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

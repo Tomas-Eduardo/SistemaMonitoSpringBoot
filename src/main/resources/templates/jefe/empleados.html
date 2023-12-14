@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Client List</title>
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/jefe">Sistema Monito - Jefe</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/jefe">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/jefe/allProductos">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/jefe/allVentas">Ventas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/jefe/allEmpleados">Gestionar Empleados</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/jefe/logout">
+                    <button class="btn btn-danger">Cerrar Sesión</button>
+                </a>
+            </li>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Empleados Lista</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Rut</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="empleado : ${empleados}">
+            <td th:text="${empleado.id}"></td>
+            <td th:text="${empleado.nombre}"></td>
+            <td th:text="${empleado.apellido}"></td>
+            <td th:text="${empleado.email}"></td>
+            <td th:text="${empleado.rol}"></td>
+            <td th:text="${empleado.rut}"></td>
+            <td>
+                <a th:href="@{/jefe/deleteEmp/{id}(id=${empleado.id})}" class="btn btn-danger">Delete</a>
+                <a th:href="@{/jefe/editEmp/{id}(id=${empleado.id})}" class="btn btn-primary">Update</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/jefe/createEmpleado}" class="btn btn-primary">Crear Empleado</a>
+</div>
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

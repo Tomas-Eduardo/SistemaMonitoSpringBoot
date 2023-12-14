@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualizar Producto</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/jefe">Sistema Monito - Jefe</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/jefe">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jefe/allProductos">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jefe/allVentas">Ventas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jefe/allEmpleados">Gestionar Empleados</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/jefe/logout">
+          <button class="btn btn-danger">Cerrar Sesión</button>
+        </a>
+      </li>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row justify-content-center align-items-center min-vh-100">
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow">
+        <div class="card-body p-4">
+          <h4 class="card-title mb-4 text-center">Actualizar Producto</h4>
+          <form action="/jefe/edit" th:object="${producto}">
+            <input type="hidden" name="id" th:value="${producto.id}">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="firstName" th:field="*{nombre}" placeholder="Ingrese el nombre">
+            </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripcion</label>
+              <input type="text" class="form-control" id="descripcion" name="descripcion" th:field="*{descripcion}" placeholder="Ingrese el apellido">
+            </div>
+            <div class="mb-3">
+              <label for="stock" class="form-label">Stock</label>
+              <input type="text" class="form-control" id="stock" name="stock" th:field="*{stock}" placeholder="Ingrese el correo electrónico">
+            </div>
+            <div class="mb-3">
+              <label for="valor" class="form-label">Valor</label>
+              <input type="text" class="form-control" id="valor" name="valor" th:field="*{valor}" placeholder="Ingrese la contraseña">
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
