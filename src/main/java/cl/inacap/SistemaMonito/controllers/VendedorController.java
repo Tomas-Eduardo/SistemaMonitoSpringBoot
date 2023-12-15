@@ -29,11 +29,6 @@ public class VendedorController {
     @Autowired
     private PedidoService pedidoService;
 
-    @GetMapping("/logout")
-    public String logout() {
-        return "redirect:/login";
-    }
-
     @GetMapping("/delete/{id}")
     public String deleteVenta(@PathVariable Long id, Model model) {
         Pedido pedido = pedidoService.findById(id);

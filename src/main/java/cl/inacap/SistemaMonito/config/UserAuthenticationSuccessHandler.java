@@ -11,12 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 
+
 @Component
 public class UserAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+
+
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException {
+
 
         String redirectUrl = null;
 

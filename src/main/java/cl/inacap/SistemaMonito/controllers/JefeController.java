@@ -27,11 +27,6 @@ public class JefeController {
     @Autowired
     PedidoService pedidoService;
 
-    @GetMapping("/logout")
-    public String logout() {
-        return "redirect:/login";
-    }
-
     // Empleados
 
     @GetMapping("/allEmpleados")

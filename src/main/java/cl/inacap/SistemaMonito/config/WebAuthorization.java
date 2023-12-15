@@ -10,9 +10,18 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+
 @EnableWebSecurity
 @Configuration
 public class WebAuthorization extends WebSecurityConfigurerAdapter {
+
+    private static final Logger logger = LoggerFactory.getLogger(WebAuthorization.class);
+
+
 
     @Autowired
     UserAuthenticationSuccessHandler successHandler;
@@ -20,42 +29,43 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        logger.info("Configurando la seguridad...");
+
         http.headers().frameOptions().sameOrigin();
         http.authorizeRequests()
                 .antMatchers("/api/**").permitAll()
                 .antMatchers("/login.html", "/login").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/jefe/**").hasAuthority("JEFE")
-                .antMatchers("/vendedor/**").hasAnyAuthority("JEFE","VENDEDOR")
+                .antMatchers("/vendedor/**").hasAnyAuthority("VENDEDOR")
                 .anyRequest().authenticated();
 
+
+        http.exceptionHandling()
+                .authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
 
 
         http.formLogin()
                 .successHandler(successHandler)
-                .loginPage("/api/login")
+                .failureHandler((request, response, exception) -> {
+                    logger.error("Error de autenticación: {}", exception.getMessage());
+                    response.sendRedirect("/login?error");
+                })
+                .loginPage("/login")
                 .usernameParameter("email")
                 .passwordParameter("password");
 
 
         http.logout()
-                .logoutUrl("/api/logout")
+                .logoutUrl("/logout")
                 .logoutSuccessHandler(logoutSuccessHandler()) // Set the custom LogoutSuccessHandler
                 .permitAll();
 
         http.csrf().disable();
 
-        // if user is not authenticated, just send an authentication failure response
-        http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
-
-        // if login is successful, just clear the flags asking for authentication
         http.formLogin().successHandler(successHandler);
 
-        // if login fails, just send an authentication failure response
-        http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
-
-        // if logout is successful, just send a success response
-        //http.logout().logoutSuccessHandler(logoutSuccessHandler);
+        logger.info("Configuración de seguridad completa.");
     }
 
 

@@ -19,7 +19,14 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h4 class="card-title text-center">Iniciar Sesión</h4>
-                    <form id="loginForm" th:action="@{/api/login}" method="post">
+                    <form id="loginForm" th:action="@{/login}" method="post">
+                        <div th:if="${loginError}">
+                            <div th:if="${loginError}">
+                                <div class="alert alert-danger" role="alert">
+                                    Credenciales inválidas. Por favor, inténtalo de nuevo.
+                                </div>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <h4>Correo electronico</h4>
                             <input type="email" class="form-control" th:field="*{user.email}" placeholder="Ingrese su correo">
